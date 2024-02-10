@@ -3,6 +3,7 @@ import pytesseract
 from PIL import Image
 
 
+# loading the image
 def load_image(photo):
     image = Image.open(photo)
     text = pytesseract.image_to_string(image)
