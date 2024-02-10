@@ -2,10 +2,13 @@ import requests
 import pytesseract
 from PIL import Image
 
-image = Image.open('Canada.png')
-text = pytesseract.image_to_string(image)
-print(text)
-text_stripped = text.strip()
+
+def load_image(photo):
+    image = Image.open(photo)
+    text = pytesseract.image_to_string(image)
+    print(text)
+    text_stripped = text.strip()
+    return text_stripped
 
 
 # connecting with restapi
@@ -17,6 +20,7 @@ def get_country_info(country_name):
         return country_data
     else:
         return None
+
 
 # displaying the data from api
 def display_country_info(country_data):
@@ -32,7 +36,7 @@ def display_country_info(country_data):
 
 
 def main():
-    country_name = text_stripped
+    country_name = load_image("Italy.png")
     country_data = get_country_info(country_name)
     display_country_info(country_data)
 
